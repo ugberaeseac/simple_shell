@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * _strcpy - copy the string pointed to by src to dest
  * Description: copy a string pointed by a pointer to another string
