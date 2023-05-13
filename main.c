@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	char *lineptr;
 	size_t size;
 	int counter;
-	
+
 	(void)argc;
 	counter = 0;
 	signal(SIGINT, SIG_IGN);
