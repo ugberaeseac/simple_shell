@@ -5,7 +5,7 @@
  * @argv: argument vector
  * @lineptr: string entered by user
  * @counter: command counter
- * @linecmd: array of tokens
+ * @size: buffer size
  *
  * Return: nothing
  */
