@@ -7,12 +7,12 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-        int count;
+	int count;
 
-        for (count = 0; src[count] != '\0'; count++)
-                dest[count] = src[count];
-        dest[count] = '\0';
-        return (dest);
+	for (count = 0; src[count] != '\0'; count++)
+		dest[count] = src[count];
+	dest[count] = '\0';
+	return (dest);
 }
 /**
  * _strlen - function name
@@ -22,14 +22,14 @@ char *_strcpy(char *dest, char *src)
  */
 unsigned int _strlen(char *s)
 {
-        unsigned int len = 0;
+	unsigned int len = 0;
 
-        while (*s)
-        {
-                len++;
-                s++;
-        }
-        return (len);
+	while (*s)
+	{
+		len++;
+		s++;
+	}
+	return (len);
 }
 /**
  * _strdup - function name
@@ -41,20 +41,20 @@ unsigned int _strlen(char *s)
  */
 char *_strdup(char *str)
 {
-        char *duplicate;
-        unsigned int i;
+	char *duplicate;
+	unsigned int i;
 
-        if (str == NULL)
-                return (NULL);
-        duplicate = (char *)malloc(sizeof(char) * (_strlen(str) + 1));
+	if (str == NULL)
+		return (NULL);
+	duplicate = (char *)malloc(sizeof(char) * (_strlen(str) + 1));
 
-        if (duplicate == NULL)
-                return (NULL);
+	if (duplicate == NULL)
+		return (NULL);
 
-        for (i = 0; str[i]; i++)
-        {
-                duplicate[i] = str[i];
-        }
-        duplicate[i] = '\0';
-        return (duplicate);
+	for (i = 0; str[i]; i++)
+	{
+		duplicate[i] = str[i];
+	}
+	duplicate[i] = '\0';
+	return (duplicate);
 }
