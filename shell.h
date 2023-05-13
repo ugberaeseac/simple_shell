@@ -13,7 +13,7 @@
 extern char **environ;
 
 char *_strcpy(char *dest, char *src);
-int _strlen(char *s);
+unsigned int _strlen(char *s);
 char *_strdup(char *src);
 
 #endif
