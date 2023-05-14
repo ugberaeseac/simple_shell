@@ -5,17 +5,23 @@
  * @delim: delimiter between strings
  * Return: number of tokens
  */
-int calculate_tokens(char *lineptr, char *delim)
+int calculate_tokens(char *lineptr, const char *delim)
 {
 	int counter = 0;
 	char *token, *line_copy;
 
+	line_copy = malloc(sizeof(char) * _strlen(lineptr));
+	if (line_copy == NULL)
+	{
+		free(lineptr);
+		exit(EXIT_FAILURE);
+	}
 	line_copy = _strcpy(line_copy, lineptr);
 	token = strtok(line_copy, delim);
 	while (token != NULL)
 	{
 		counter++;
-		token = strtok(line_copy, delim);
+		token = strtok(NULL, delim);
 	}
 	return (counter);
 }
@@ -26,7 +32,7 @@ int calculate_tokens(char *lineptr, char *delim)
  * @delim: the delimiter between tokens
  * Return: array of tokens to be passed to the execve function
  */
-char **_parse_to_token(int num_token, char *lineptr, char *delim)
+char **_parse_to_token(int num_token, char *lineptr, const char *delim)
 {
 	char **arr_t;
 	int i = 0;
@@ -50,7 +56,7 @@ char **_parse_to_token(int num_token, char *lineptr, char *delim)
 		arr_t[i] = _strdup(token);
 		if (arr_t[i] ==  NULL)
 		{
-			perror("memory Failed\n");
+			perror("Memory Failed\n");
 			exit(EXIT_FAILURE);
 		}
 		token = strtok(NULL, delim);
