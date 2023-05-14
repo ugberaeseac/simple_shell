@@ -17,5 +17,8 @@ int count_tokens(char *line, char *delem);
 char *_strcpy(char *dest, char *src);
 unsigned int _strlen(char *s);
 char *_strdup(char *src);
+void _prompt(char *lineptr, size_t size, int counter, char **argv);
+void _exit_d(char *lineptr);
+void _execve(char **linecmd, char *lineptr, int counter, char **argv);
 
 #endif
