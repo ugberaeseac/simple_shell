@@ -38,6 +38,7 @@ char **_parse_to_token(int num_token, char *lineptr, char *delim)
 		free(lineptr);
 		exit(EXIT_FAILURE);
 	}
+	num_token = calculate_tokens(lineptr, delim);
 	arr_t = malloc(sizeof(char *) * (num_token + 1));
 	if (arr_t == NULL)
 	{
@@ -52,7 +53,7 @@ char **_parse_to_token(int num_token, char *lineptr, char *delim)
 			perror("memory Failed\n");
 			exit(EXIT_FAILURE);
 		}
-		token = strtok(line_copy, delim);
+		token = strtok(NULL, delim);
 		i++;
 	}
 	arr_t[i] = NULL;
