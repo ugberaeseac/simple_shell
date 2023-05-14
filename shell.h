@@ -17,6 +17,7 @@ char *_strdup(char *src);
 void _prompt(char *lineptr, size_t size, int counter, char **argv);
 void _exit_d(char *lineptr);
 void _execve(char **linecmd, char *lineptr, int counter, char **argv);
-char **_parse_to_token(int num_token, char **lineptr, char *delim);
+int calculate_tokens(char *lineptr, char *delim)
+char **_parse_to_token(int num_token, char *lineptr, char *delim);
 
 #endif
