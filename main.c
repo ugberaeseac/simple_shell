@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	counter = 0;
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, _signal_ignore);
 	do {
 		counter++;
 		lineptr = NULL;
