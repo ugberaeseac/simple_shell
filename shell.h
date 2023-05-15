@@ -22,6 +22,6 @@ void _exit_d(char *lineptr);
 void _execve(char **linecmd, char *lineptr, int counter, char **argv);
 int calculate_tokens(char *lineptr, const char *delim);
 char **_parse_to_token(int num_token, char *lineptr, const char *delim);
-char *path_value(void);
+char *_getenv(char *key);
 
 #endif
