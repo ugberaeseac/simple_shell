@@ -11,7 +11,7 @@
  */
 void _prompt(char *lineptr, size_t size, int counter, char **argv)
 {
-	int i;
+	int i, builtin_stat;
 	ssize_t nread;
 	int num_token;
 	char **linecmd;
@@ -33,7 +33,9 @@ void _prompt(char *lineptr, size_t size, int counter, char **argv)
 			free(lineptr);
 			return;
 		}
-		_execve(linecmd, lineptr, counter, argv);
+		builtin_stat = _built_in(linecmd, lineptr);
+		if (builtin_stat == -1)
+			_execve(linecmd, lineptr, counter, argv);
 		for (i = 0; linecmd[i] != NULL; i++)
 			free(linecmd[i]);
 		free(linecmd);

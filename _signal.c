@@ -11,3 +11,19 @@ void _exit_d(char *lineptr)
 	free(lineptr);
 	exit(EXIT_FAILURE);
 }
+
+
+/**
+ * _signal_ignore - function that ignores ^C (SIGINT) to the process
+ * @sig: integer value of signal
+ *
+ * Return: Nothing
+ */
+
+void _signal_ignore(int sig)
+{
+        if (sig == SIGINT)
+        {
+                write(STDOUT_FILENO, "\n$ ", 3);
+        }
+}
