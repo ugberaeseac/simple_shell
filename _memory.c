@@ -8,12 +8,12 @@
  */
 void _free_double_ptr(char **str)
 {
-        int i = 0;
+	int i = 0;
 
-        while (str[i] != NULL)
-        {
-                free(str[i]);
-                i++;
-        }
-        free(str);
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
