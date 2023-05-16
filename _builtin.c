@@ -11,7 +11,7 @@ int _built_in(char **linecmd, char *lineptr)
 {
 	void (*func_ptr)(char *);
 
-	func_ptr = _check_built_in(linecmd[0]);
+	func_ptr = _check_builtin(linecmd[0]);
 	if (func_ptr == NULL)
 		return (-1);
 
@@ -35,9 +35,7 @@ void (*_check_builtin(char *func))(char *str)
 	int i;
 
 	built_t built_cmds[] = {
-		{"exit", _exit_},
 		{"env", _env},
-		{"cd", _cd},
 		{NULL, NULL}
 	};
 
