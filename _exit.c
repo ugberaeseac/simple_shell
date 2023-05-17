@@ -33,10 +33,10 @@ int _exit_(char *lineptr)
 {
 	int status = 0;
 	char **exit_token;
-	int count = 0;
+	int token_count = 0;
 	const char *delim = "\n\t ";
 
-	exit_token = _parse_to_token(count, lineptr, delim);
+	exit_token = _parse_to_token(token_count, lineptr, delim);
 	if (exit_token == NULL)
 	{
 		free(lineptr);
