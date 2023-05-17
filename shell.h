@@ -43,7 +43,7 @@ void _exit_(char *lineptr);
 int _atoi(char *str);
 char **_pathtokens(char *str);
 char *_exec_path(char **tokens, char *cmd);
-char *build_path(char *e_path, char *cmd);
+char *_build_path(char *e_path, char *cmd);
 char *_getpath(char *cmd);
 
 
