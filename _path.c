@@ -65,4 +65,52 @@ char *_exec_path(char **tokens, char *cmd)
 }
 
 
+/**
+ * _build_path - builds the executable path of the executable command
+ * @cmd_path: full path of the executable command
+ * @cmd: executable command
+ *
+ * Return: full path including executabe command
+ */
+char *build_path(char *cmd_path, char *cmd)
+{
+}
 
+
+
+
+
+/**
+ * _getpath - get the path and check if the executable exists
+ * @cmd: executable command
+ *
+ * Return: full path of executabe file
+ */
+char *_getpath(char *cmd)
+{
+	char **pathtoks = NULL;
+	char *str;
+	char *e_path = NULL;
+	char *cmd_path = NULL;
+	
+	pathtoks = _pathtokens(str);
+	if (pathtoks == NULL)
+		return (NULL);
+
+	e_path = _exec_path(pathtoks, cmd);
+	if (e_path == NULL)
+	{
+		_free_double_ptr(pathtoks);
+		return (NULL);
+	}
+
+	cmd_path = _build_path(e_path, cmd);
+	if (cmd_path == NULL)
+	{
+		_free_double_ptr(pathtoks);
+		return (NULL);
+	}
+
+	_free_double_ptr(pathtoks);
+	return (cmd_path);
+}
