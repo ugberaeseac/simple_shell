@@ -29,7 +29,7 @@ int _atoi(char *str)
  *
  * Return: exit shell if success, -1 if error
  */
-int _exit_(char *lineptr)
+void _exit_(char *lineptr)
 {
 	int status = 0;
 	char **exit_token;
@@ -41,7 +41,7 @@ int _exit_(char *lineptr)
 	{
 		free(lineptr);
 		_free_double_ptr(exit_token);
-		return (-1);
+		return;
 	}
 
 	if (exit_token[1] != NULL)
@@ -53,7 +53,7 @@ int _exit_(char *lineptr)
 	{
 		perror("Error ");
 		_free_double_ptr(exit_token);
-		return (-1);
+		return;
 	}
 
 	_free_double_ptr(exit_token);
