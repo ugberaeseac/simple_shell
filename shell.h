@@ -33,10 +33,11 @@ void _exit_d(char *lineptr);
 void _execve(char **linecmd, char *lineptr, int counter, char **argv);
 int calculate_tokens(char *lineptr, const char *delim);
 char **_parse_to_token(int num_token, char *lineptr, const char *delim);
-char *path_value(void);
+char *_getenv(char *key);
 void (*_check_builtin(char *func))(char *str);
 void _env(char *lineptr);
 int _built_in(char **linecmd, char *lineptr);
 void _signal_ignore(int sig);
+void _free_double_ptr(char **str);
 
 #endif

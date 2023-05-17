@@ -9,17 +9,17 @@
  */
 int _built_in(char **linecmd, char *lineptr)
 {
-        void (*func_ptr)(char *);
+	void (*func_ptr)(char *);
 
-        func_ptr = _check_built_in(linecmd[0]);
-        if (func_ptr == NULL)
-                return (-1);
+	func_ptr = _check_builtin(linecmd[0]);
+	if (func_ptr == NULL)
+		return (-1);
 
-        if (_strcmp("exit", linecmd[0]) == 0)
-                _free_double_ptr(linecmd);
+	if (_strcmp("exit", linecmd[0]) == 0)
+		_free_double_ptr(linecmd);
 
-        func_ptr(lineptr);
-        return (0);
+	func_ptr(lineptr);
+	return (0);
 }
 
 
@@ -32,23 +32,21 @@ int _built_in(char **linecmd, char *lineptr)
  */
 void (*_check_builtin(char *func))(char *str)
 {
-        int i;
+	int i;
 
-        built_t built_cmds[] = {
-                {"exit", _exit_},
-                {"env", _env},
-                {"cd", _cd},
-                {NULL, NULL}
-        };
+	built_t built_cmds[] = {
+		{"env", _env},
+		{NULL, NULL}
+	};
 
-        for (i = 0; built_cmds[i].builtin != NULL; i++)
-        {
-                if (_strcmp(built_cmds[i].built_in, func) == 0)
-                {
-                        return (built_cmds[i].fptr);
-                }
-        }
-        return (NULL);
+	for (i = 0; built_cmds[i].built_in != NULL; i++)
+	{
+		if (_strcmp(built_cmds[i].built_in, func) == 0)
+		{
+			return (built_cmds[i].fptr);
+		}
+	}
+	return (NULL);
 }
 
 /**
@@ -59,15 +57,15 @@ void (*_check_builtin(char *func))(char *str)
  */
 void _env(char *lineptr)
 {
-        int i;
-        int j;
+	int i;
+	int j;
 
-        (void)lineptr;
+	(void)lineptr;
 
-        for (i = 0; environ[i] != NULL; i++)
-        {
-                for (j = 0; environ[i][j] != '\0'; j++)
-                        write(STDOUT_FILENO, &environ[i][j], 1);
-                write(STDOUT_FILENO, "\n", 1);
-        }
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		for (j = 0; environ[i][j] != '\0'; j++)
+			write(STDOUT_FILENO, &environ[i][j], 1);
+		write(STDOUT_FILENO, "\n", 1);
+	}
 }
