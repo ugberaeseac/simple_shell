@@ -39,5 +39,7 @@ void _env(char *lineptr);
 int _built_in(char **linecmd, char *lineptr);
 void _signal_ignore(int sig);
 void _free_double_ptr(char **str);
+int _exit_(char *lineptr);
+int _atoi(char *str);
 
 #endif
