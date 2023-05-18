@@ -84,7 +84,7 @@ char *_exec_path(char **tokens, char *cmd)
 			perror("Error ");
 			return (NULL);
 		}
-		status= stat(cmd, &stat_buf);
+		status = stat(cmd, &stat_buf);
 		if (status == 0)
 		{
 			chdir(pwd);
