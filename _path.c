@@ -9,7 +9,7 @@
 char *_getpath(char *cmd)
 {
 	char **pathtoks = NULL;
-	char *str;
+	char *str = NULL;
 	char *e_path = NULL, *cmd_path = NULL;
 
 	pathtoks = _pathtokens(str);
@@ -67,13 +67,13 @@ char *_exec_path(char **tokens, char *cmd)
 	struct stat stat_buf;
 	char *pwd = NULL, *buf = NULL;
 	size_t size = 0;
-	int status, i = 0;
+	int status, i;
 
 	pwd = getcwd(buf, size);
 	if (pwd == NULL)
 		return (NULL);
 
-	if (cmd[0] == '\')
+	if (cmd[0] == '/')
 		cmd = cmd + 1;
 
 	for (i = 0; tokens[i] != NULL; i++)
@@ -84,7 +84,7 @@ char *_exec_path(char **tokens, char *cmd)
 			perror("Error ");
 			return (NULL);
 		}
-		status = stat(cmd, stat_buf);
+		status= stat(cmd, &stat_buf);
 		if (status == 0)
 		{
 			chdir(pwd);

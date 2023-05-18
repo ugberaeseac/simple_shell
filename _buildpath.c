@@ -9,13 +9,13 @@
  */
 char *_build_path(char *e_path, char *cmd)
 {
-	int path_lenth = 0;
+	int path_length = 0;
 	char *path = NULL;
 
 	if (e_path == NULL || cmd == NULL)
 		return (NULL);
 
-	path_length = (_strlen(cmd_path) + _strlen(cmd) + 2);
+	path_length = (_strlen(e_path) + _strlen(cmd) + 2);
 	path = malloc(sizeof(char) * path_length);
 	if (path == NULL)
 		return (NULL);
