@@ -16,7 +16,7 @@ void _prompt(char *lineptr, size_t size, int counter, char **argv)
 	int num_token;
 	char **linecmd;
 	const char *delim = "\n\t ";
-	
+
 	num_token = 0;
 	if (isatty(STDIN_FILENO))
 	{

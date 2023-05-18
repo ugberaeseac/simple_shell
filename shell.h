@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <sys/wait.h>
 #include <string.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #define PROMPT "$ "
 
@@ -39,6 +40,14 @@ void _env(char *lineptr);
 int _built_in(char **linecmd, char *lineptr);
 void _signal_ignore(int sig);
 void _free_double_ptr(char **str);
+void _exit_(char *lineptr);
+int _atoi(char *str);
+char **_pathtokens(char *str);
+char *_exec_path(char **tokens, char *cmd);
+char *_build_path(char *e_path, char *cmd);
+char *_getpath(char *cmd);
+
+
 
 
 #endif
