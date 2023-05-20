@@ -51,7 +51,12 @@ void _puts(char *str);
 int _print_number(int n);
 void _error_execve(char *argv, int counter, char *cmd);
 void _print_error(char *argv, int counter, char *command);
+<<<<<<< HEAD
 
+=======
+char *update_add_env(char *key, char *value);
+int _setenv(char *key, char *value, int overwrite);
+>>>>>>> master
 
 
 #endif
