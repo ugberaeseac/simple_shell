@@ -9,6 +9,7 @@
 void _exit_d(char *lineptr)
 {
 	free(lineptr);
+	_putchar('\n');
 	exit(EXIT_FAILURE);
 }
 
