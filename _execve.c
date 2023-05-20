@@ -45,7 +45,7 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 		if (linecmd[0] != NULL)
 		{
 			if (execve(linecmd[0], linecmd, environ) == -1)
-				perror("argv[0]");
+				_error_execve(argv[0], counter, cmd);
 		}
 	}
 	else
