@@ -29,7 +29,9 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 			stat_check = stat(cmd, &buf);
 			if (stat_check == -1)
 			{
-				perror("Stat Error");
+				_print_error(argv[0], counter, cmd);
+				_puts(": not found");
+				_putchar('\n');
 				free(lineptr);
 				free(cmd);
 				for (i = 1; linecmd[i] != NULL; i++)
