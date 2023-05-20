@@ -72,3 +72,49 @@ void _env(char *lineptr)
 		write(STDOUT_FILENO, "\n", 1);
 	}
 }
+
+
+/**
+ * _cd - function that changes the directory to the paramater passed.
+ * @lineptr: parameter
+ *
+ * Return: void
+ */
+void _cd(char *lineptr)
+{
+	char **linecmd = NULL;
+	int num_token = 0;
+	char *abs_path = NULL, *temp_pwd = NULL;
+	char *cwd = NULL;
+	const char *delim = "\n\t ";
+	char *buf = NULL;
+	size_t size = 0;
+
+	linecmd = _parse_to_token(num_token, lineptr, delim);
+	if (linecmd[0] == NULL)
+	{
+		free(linecmd);
+		free(lineptr);
+		return;
+	}
+	if (linecmd[1] == NULL || linecmd[1] = "~")
+	{
+		abs_path = _getenv("HOME");
+		chdir(abs_path);
+		_setenv(PWD, abs_path, 1);
+	}
+	else if (_strcmp(linecmd[1], ".") == 0)
+	{
+		cwd = getcwd(buf, size);
+		chdir(cwd);
+		_setenv(PWD, cwd, 0);
+	}
+	else if (_strcmp(linecmd[1], "-") == 0)
+	{
+		temp_pwd = _getenv("OLDPWD");
+		chdir(temp_pwd);
+	}
+	else
+		chdir(linecmd[1]);
+	_free_double_ptr(linecmd);
+}
