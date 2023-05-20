@@ -51,7 +51,7 @@ int _print_number(int n)
 
 	while (div != 0)
 	{
-		count += _write_char('0' + num / div);
+		count += _putchar('0' + num / div);
 		num %= div;
 		div /= 10;
 	}
