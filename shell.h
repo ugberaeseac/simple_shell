@@ -46,7 +46,11 @@ char **_pathtokens(char *str);
 char *_exec_path(char **tokens, char *cmd);
 char *_build_path(char *e_path, char *cmd);
 char *_getpath(char *cmd);
-
+int _putchar(char c);
+void _puts(char *str);
+int _print_number(int n);
+void _error_execve(char *argv, int counter, char *cmd);
+void _print_error(char *argv, int counter, char *command);
 
 
 

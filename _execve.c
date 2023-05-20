@@ -17,8 +17,6 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 	int stat_check;
 	pid_t pid = fork();
 
-	(void)argv;
-	(void)counter;
 
 	if (pid == 0)
 	{
@@ -29,7 +27,9 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 			stat_check = stat(cmd, &buf);
 			if (stat_check == -1)
 			{
-				perror("Stat Error");
+				_print_error(argv[0], counter, cmd);
+				_puts(": not found");
+				_putchar('\n');
 				free(lineptr);
 				free(cmd);
 				for (i = 1; linecmd[i] != NULL; i++)
@@ -43,7 +43,7 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 		if (linecmd[0] != NULL)
 		{
 			if (execve(linecmd[0], linecmd, environ) == -1)
-				perror("argv[0]");
+				_error_execve(argv[0], counter, cmd);
 		}
 	}
 	else
