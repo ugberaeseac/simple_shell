@@ -38,6 +38,7 @@ void (*_check_builtin(char *func))(char *str)
 		{"env", _env},
 		{"exit", _exit_},
 		{"setenv", _setenv},
+		{"cd", _cd},
 		{NULL, NULL}
 	};
 
