@@ -37,6 +37,7 @@ void (*_check_builtin(char *func))(char *str)
 	built_t built_cmds[] = {
 		{"env", _env},
 		{"exit", _exit_},
+		{"setenv", _setenv},
 		{NULL, NULL}
 	};
 
