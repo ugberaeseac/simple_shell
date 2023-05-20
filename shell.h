@@ -38,5 +38,7 @@ void (*_check_builtin(char *func))(char *str);
 void _env(char *lineptr);
 int _built_in(char **linecmd, char *lineptr);
 void _signal_ignore(int sig);
+char *update_add_env(char *key, char *value);
+int _setenv(char *key, char *value, int overwrite);
 
 #endif
