@@ -97,17 +97,17 @@ void _cd(char *lineptr)
 		free(lineptr);
 		return;
 	}
-	if (linecmd[1] == NULL || linecmd[1] = "~")
+	if (linecmd[1] == NULL || (_strcmp(linecmd[1], "~") == 0))
 	{
 		abs_path = _getenv("HOME");
 		chdir(abs_path);
-		_setenv(PWD, abs_path, 1);
+		cd_setenv("PWD", abs_path, 1);
 	}
 	else if (_strcmp(linecmd[1], ".") == 0)
 	{
 		cwd = getcwd(buf, size);
 		chdir(cwd);
-		_setenv(PWD, cwd, 0);
+		cd_setenv("PWD", cwd, 0);
 	}
 	else if (_strcmp(linecmd[1], "-") == 0)
 	{
@@ -117,4 +117,38 @@ void _cd(char *lineptr)
 	else
 		chdir(linecmd[1]);
 	_free_double_ptr(linecmd);
+}
+
+
+/**
+ * cd_setenv - function that sets PWD env variable to the current working directory
+ * @key: name of env-variable
+ * @value: value of env-variable
+ * @overwrite: flag 1 do change 0 do nothing
+ *
+ * Return: 0 success always
+ */
+int cd_setenv(char *key, char *value, int overwrite)
+{
+	int i = 0;
+	char *key_var;
+
+	while (environ[i] != NULL)
+	{
+		if (_strncmp(environ[i], key, _strlen(key)) == 0)
+		{
+			if (overwrite == 1)
+			{
+				key_var = update_add_env(key, value);
+				environ[i] = _strcpy(environ[i], key_var);
+			}
+			return (0);
+		}
+		i++;
+	}
+	key_var = update_add_env(key, value);
+	environ[i] = _strcpy(environ[i], key_var);
+	i++;
+	environ[i] = NULL;
+	return (0);
 }
