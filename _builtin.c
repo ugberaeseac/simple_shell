@@ -97,18 +97,10 @@ void _cd(char *lineptr)
 		free(lineptr);
 		return;
 	}
-	if (linecmd[1] == NULL || (_strcmp(linecmd[1], "~") == 0))
-	{
-		abs_path = _getenv("HOME");
-		chdir(abs_path);
-		cd_setenv("PWD", abs_path, 1);
-	}
+	if (linecmd[1] == NULL || linecmd[1] == "~")
+		cd_home();
 	else if (_strcmp(linecmd[1], ".") == 0)
-	{
-		cwd = getcwd(buf, size);
-		chdir(cwd);
-		cd_setenv("PWD", cwd, 0);
-	}
+		cd_cwd();
 	else if (_strcmp(linecmd[1], "-") == 0)
 	{
 		temp_pwd = _getenv("OLDPWD");
@@ -121,7 +113,8 @@ void _cd(char *lineptr)
 
 
 /**
- * cd_setenv - function that sets PWD env variable to the current working directory
+ * cd_setenv - function that sets PWD env variable
+ * to the current working directory
  * @key: name of env-variable
  * @value: value of env-variable
  * @overwrite: flag 1 do change 0 do nothing
