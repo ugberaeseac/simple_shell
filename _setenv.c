@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * update_add_env - function that add an env variable
  * @key: name of the env variable
@@ -18,29 +19,45 @@ char *update_add_env(char *key, char *value)
 	key_var = _strcat(key_var, value);
 	return (key_var);
 }
+
+
 /**
  * _setenv - function that change the env variable if overwrite = 1
  * no change if overwrite = 0
- * @key: name of env-variable
- * @value: value of env-variable
- * @overwrite: flag 1 do change 0 do nothing
- * Return: 0 success always
+ * @lineptr: name of env-variable
+ *
+ * Return: void
  */
-int _setenv(char *key, char *value, int overwrite)
+void _setenv(char *lineptr)
 {
-	int i = 0;
+	char *key = NULL, *value = NULL;
 	char *key_var;
+	char **linecmd = NULL;
+	int num_token = 0, overwrite = 0, i = 0;
+	const char *delim = "\n\t ";
+
+	linecmd = _parse_to_token(num_token, lineptr, delim);
+	if (linecmd[0] == NULL || linecmd[1] == NULL || linecmd[2] == NULL)
+	{
+		_puts("Too few arguments\n");
+		_free_double_ptr(linecmd);
+		free(lineptr);
+		return;
+	}
+	key = _strdup(linecmd[1]);
+	value = _strdup(linecmd[2]);
 
 	while (environ[i] != NULL)
 	{
 		if (_strncmp(environ[i], key, _strlen(key)) == 0)
 		{
+			overwrite == 1;
 			if (overwrite == 1)
 			{
 				key_var = update_add_env(key, value);
 				environ[i] = _strcpy(environ[i], key_var);
 			}
-			return (0);
+			return;
 		}
 		i++;
 	}
@@ -48,5 +65,4 @@ int _setenv(char *key, char *value, int overwrite)
 	environ[i] = _strcpy(environ[i], key_var);
 	i++;
 	environ[i] = NULL;
-	return (0);
 }
