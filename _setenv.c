@@ -33,13 +33,13 @@ void _setenv(char *lineptr)
 	char *key = NULL, *value = NULL;
 	char *key_var;
 	char **linecmd = NULL;
-	int num_token = 0, overwrite = 0, i = 0;
+	int num_token = 0, i = 0;
 	const char *delim = "\n\t ";
 
 	linecmd = _parse_to_token(num_token, lineptr, delim);
 	if (linecmd[0] == NULL || linecmd[1] == NULL || linecmd[2] == NULL)
 	{
-		_puts("Too few arguments\n");
+		_puts("Too few arguments");
 		_free_double_ptr(linecmd);
 		free(lineptr);
 		return;
@@ -51,18 +51,22 @@ void _setenv(char *lineptr)
 	{
 		if (_strncmp(environ[i], key, _strlen(key)) == 0)
 		{
-			overwrite = 1;
-			if (overwrite == 1)
-			{
-				key_var = update_add_env(key, value);
-				environ[i] = _strcpy(environ[i], key_var);
-			}
+			key_var = update_add_env(key, value);
+			if (key_var == NULL)
+				return;
+			environ[i] = _strcpy(environ[i], key_var);
+			free(key);
+			free(value);
 			return;
 		}
 		i++;
 	}
 	key_var = update_add_env(key, value);
+	if (key_var == NULL)
+		return;
 	environ[i] = _strcpy(environ[i], key_var);
 	i++;
 	environ[i] = NULL;
+	free(key);
+	free(value);
 }
