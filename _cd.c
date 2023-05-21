@@ -54,3 +54,33 @@ int cd_cwd(void)
 
 	return (1);
 }
+
+/**
+ * cd_toggle - function that toggles the previous working directory
+ *
+ * Return: void
+ */
+int cd_toggle(void)
+{
+	char *cwd, *oldcwd;
+	char *buf;
+	size_t size = 0;
+
+	cwd = getcwd(buf, size);
+	oldcwd = _getenv("OLDPWD");
+	if (oldcwd == NULL)
+		oldcwd = cwd;
+
+	cd_setenv("OLDPWD", cwd, 0);
+
+	if (chdir(oldcwd == -1)
+		cd_setenv("PWD", cwd, 0);
+	else
+		cd_setenv("PWD", oldcwd, 0);
+
+	chdir(oldcwd);
+	free(cwd);
+	free(oldcwd);
+
+return (1);
+}
