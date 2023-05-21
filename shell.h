@@ -50,11 +50,12 @@ int _putchar(char c);
 void _puts(char *str);
 int _print_number(int n);
 void _error_execve(char *argv, int counter, char *cmd);
-void _print_error(char *argv, int counter, char *command);
+void _print_error(char *argv, int counter, char *cmd);
 char *update_add_env(char *key, char *value);
-int cd _setenv(char *key, char *value, int overwrite);
+int cd_setenv(char *key, char *value, int overwrite);
 void _cd(char *lineptr);
 void _setenv(char *lineptr);
-
+void cd_home(void);
+void cd_cwd(void);
 
 #endif
