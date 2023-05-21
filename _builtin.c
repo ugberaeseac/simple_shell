@@ -84,7 +84,6 @@ void _cd(char *lineptr)
 {
 	char **linecmd = NULL;
 	int num_token = 0;
-	char *temp_pwd = NULL;
 	const char *delim = "\n\t ";
 
 	linecmd = _parse_to_token(num_token, lineptr, delim);
@@ -99,10 +98,7 @@ void _cd(char *lineptr)
 	else if (_strcmp(linecmd[1], ".") == 0)
 		cd_cwd();
 	else if (_strcmp(linecmd[1], "-") == 0)
-	{
-		temp_pwd = _getenv("OLDPWD");
-		chdir(temp_pwd);
-	}
+		cd_toggle();
 	else
 		chdir(linecmd[1]);
 	_free_double_ptr(linecmd);

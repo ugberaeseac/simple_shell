@@ -57,5 +57,6 @@ void _cd(char *lineptr);
 void _setenv(char *lineptr);
 int cd_home(void);
 int cd_cwd(void);
+int cd_toggle(void);
 
 #endif

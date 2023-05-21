@@ -63,7 +63,7 @@ int cd_cwd(void)
 int cd_toggle(void)
 {
 	char *cwd, *oldcwd;
-	char *buf;
+	char *buf = NULL;
 	size_t size = 0;
 
 	cwd = getcwd(buf, size);
@@ -73,7 +73,7 @@ int cd_toggle(void)
 
 	cd_setenv("OLDPWD", cwd, 0);
 
-	if (chdir(oldcwd == -1)
+	if (chdir(oldcwd) == -1)
 		cd_setenv("PWD", cwd, 0);
 	else
 		cd_setenv("PWD", oldcwd, 0);
