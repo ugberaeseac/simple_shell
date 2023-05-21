@@ -5,11 +5,11 @@
  *
  * Return: void
  */
-void cd_home(void)
+int cd_home(void)
 {
 	char *home;
 	char *cwd;
-	char *buf;
+	char *buf = NULL;
 	size_t size = 0;
 
 	cwd = getcwd(buf, size);
@@ -18,19 +18,20 @@ void cd_home(void)
 	{
 		cd_setenv("OLDPWD", cwd, 0);
 		free(cwd);
-		return;
+		return (1);
 	}
-	if (chdir(home == -1))
+	if (chdir(home) == -1)
 	{
 		_puts("Change to home directory failed");
 		_putchar('\n');
 		free(cwd);
-		return;
+		return (1);
 	}
 
 	cd_setenv("OLDPWD", cwd, 0);
 	cd_setenv("PWD", home, 0);
 	free(cwd);
+	return (1);
 }
 
 
@@ -40,10 +41,10 @@ void cd_home(void)
  *
  * Return: void
  */
-void cd_cwd(void)
+int cd_cwd(void)
 {
 	char *cwd;
-	char *buf;
+	char *buf = NULL;
 	size_t size = 0;
 
 	cwd = getcwd(buf, size);
@@ -51,5 +52,5 @@ void cd_cwd(void)
 	cd_setenv("PWD", cwd, 0);
 	free(cwd);
 
-	return (0);
+	return (1);
 }

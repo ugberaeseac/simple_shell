@@ -55,7 +55,7 @@ char *update_add_env(char *key, char *value);
 int cd_setenv(char *key, char *value, int overwrite);
 void _cd(char *lineptr);
 void _setenv(char *lineptr);
-void cd_home(void);
-void cd_cwd(void);
+int cd_home(void);
+int cd_cwd(void);
 
 #endif

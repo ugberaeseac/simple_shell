@@ -84,11 +84,8 @@ void _cd(char *lineptr)
 {
 	char **linecmd = NULL;
 	int num_token = 0;
-	char *abs_path = NULL, *temp_pwd = NULL;
-	char *cwd = NULL;
+	char *temp_pwd = NULL;
 	const char *delim = "\n\t ";
-	char *buf = NULL;
-	size_t size = 0;
 
 	linecmd = _parse_to_token(num_token, lineptr, delim);
 	if (linecmd[0] == NULL)
@@ -97,7 +94,7 @@ void _cd(char *lineptr)
 		free(lineptr);
 		return;
 	}
-	if (linecmd[1] == NULL || linecmd[1] == "~")
+	if (linecmd[1]  == NULL)
 		cd_home();
 	else if (_strcmp(linecmd[1], ".") == 0)
 		cd_cwd();
