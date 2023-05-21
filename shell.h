@@ -52,9 +52,9 @@ int _print_number(int n);
 void _error_execve(char *argv, int counter, char *cmd);
 void _print_error(char *argv, int counter, char *command);
 char *update_add_env(char *key, char *value);
-int _setenv(char *key, char *value, int overwrite);
+int cd _setenv(char *key, char *value, int overwrite);
 void _cd(char *lineptr);
-
+void _setenv(char *lineptr);
 
 
 #endif
