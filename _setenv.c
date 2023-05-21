@@ -51,7 +51,7 @@ void _setenv(char *lineptr)
 	{
 		if (_strncmp(environ[i], key, _strlen(key)) == 0)
 		{
-			overwrite == 1;
+			overwrite = 1;
 			if (overwrite == 1)
 			{
 				key_var = update_add_env(key, value);
