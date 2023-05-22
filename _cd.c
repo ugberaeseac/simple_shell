@@ -71,7 +71,7 @@ int cd_toggle(void)
 	if (cwd == NULL)
 		return (1);
 
-	oldpwd = _strdup(getenv("OLDPWD"));
+	oldpwd = _strdup(_getenv("OLDPWD"));
 	tmpcwd = _strdup(cwd);
 	cd_setenv("OLDPWD", tmpcwd, 1);
 	tmpoldpwd = _strdup(oldpwd);
