@@ -62,25 +62,31 @@ int cd_cwd(void)
  */
 int cd_toggle(void)
 {
-	char *cwd, *oldcwd;
+	char *cwd, *oldpwd;
+	char *tmpcwd, *tmpoldpwd;
 	char *buf = NULL;
 	size_t size = 0;
 
 	cwd = getcwd(buf, size);
-	oldcwd = _getenv("OLDPWD");
-	if (oldcwd == NULL)
-		oldcwd = cwd;
+	if (cwd == NULL)
+		return (1);
 
-	cd_setenv("OLDPWD", cwd, 0);
+	oldpwd = _strdup(getenv("OLDPWD"));
+	tmpcwd = _strdup(cwd);
+	cd_setenv("OLDPWD", tmpcwd, 1);
+	tmpoldpwd = _strdup(oldpwd);
+	cd_setenv("PWD", tmpoldpwd, 1);
 
-	if (chdir(oldcwd) == -1)
-		cd_setenv("PWD", cwd, 0);
-	else
-		cd_setenv("PWD", oldcwd, 0);
+	if (chdir(tmpoldpwd) == -1)
+	{
+		cd_setenv("PWD", tmpcwd, 1);
+		return (1);
+	}
 
-	chdir(oldcwd);
+	free(tmpoldpwd);
+	free(tmpcwd);
+	free(oldpwd);
 	free(cwd);
-	free(oldcwd);
 
 return (1);
 }
