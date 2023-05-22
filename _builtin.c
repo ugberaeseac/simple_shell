@@ -100,7 +100,7 @@ void _cd(char *lineptr)
 	else if (_strcmp(linecmd[1], "-") == 0)
 		cd_toggle();
 	else
-		chdir(linecmd[1]);
+		cd_abspath(linecmd[1]);
 	_free_double_ptr(linecmd);
 }
 

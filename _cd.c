@@ -3,7 +3,7 @@
 /**
  * cd_home - function that changes directory to HOME directory.
  *
- * Return: void
+ * Return: change directory on success or 1 if failed
  */
 int cd_home(void)
 {
@@ -16,7 +16,7 @@ int cd_home(void)
 	home = _getenv("HOME");
 	if (home == NULL)
 	{
-		cd_setenv("OLDPWD", cwd, 0);
+		cd_setenv("OLDPWD", cwd, 1);
 		free(cwd);
 		return (1);
 	}
@@ -28,10 +28,10 @@ int cd_home(void)
 		return (1);
 	}
 
-	cd_setenv("OLDPWD", cwd, 0);
-	cd_setenv("PWD", home, 0);
+	cd_setenv("OLDPWD", cwd, 1);
+	cd_setenv("PWD", home, 1);
 	free(cwd);
-	return (1);
+	return (0);
 }
 
 
@@ -39,7 +39,7 @@ int cd_home(void)
 /**
  * cd_cwd - function that changes directory to the current working directory.
  *
- * Return: void
+ * Return: change directory on success or 1 if failed
  */
 int cd_cwd(void)
 {
@@ -52,13 +52,13 @@ int cd_cwd(void)
 	cd_setenv("PWD", cwd, 0);
 	free(cwd);
 
-	return (1);
+	return (0);
 }
 
 /**
  * cd_toggle - function that toggles the previous working directory
  *
- * Return: void
+ * Return: change directory on success or 1 if failed
  */
 int cd_toggle(void)
 {
@@ -88,5 +88,37 @@ int cd_toggle(void)
 	free(oldpwd);
 	free(cwd);
 
-return (1);
+	return (0);
+}
+
+
+
+/**
+ * cd_abspath - function that changes directory to the path
+ * entered by the user
+ * @path: path
+ *
+ * Return: change directory on success or 1 if failed
+ */
+int cd_abspath(char *path)
+{
+	char *cwd;
+	char *buf = NULL;
+	size_t size = 0;
+
+	cwd = getcwd(buf, size);
+	if (cwd == NULL)
+		return (1);
+
+	cd_setenv("OLDPWD", cwd, 1);
+	if (chdir(path) == -1)
+	{
+		_puts("Cannot change directory to the given path\n");
+		free(cwd);
+		return (1);
+	}
+	cd_setenv("PWD", path, 1);
+
+free(cwd);
+return (0);
 }
