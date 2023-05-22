@@ -13,14 +13,14 @@ char *_getenv(char *key)
 	char *env_copy;
 	while (environ[i] != NULL)
 	{
-		if (strncmp(environ[i], key, strlen(key)) == 0)
+		if (_strncmp(environ[i], key, _strlen(key)) == 0)
 		{
-			env_copy = malloc(sizeof(char) * strlen(environ[i]));
-			env_copy = strcpy(env_copy, environ[i]);
+			env_copy = malloc(sizeof(char) * _strlen(environ[i]));
+			env_copy = _strcpy(env_copy, environ[i]);
 			str = strtok(env_copy, "=");
 			while (str != NULL)
 			{
-				value = strdup(str);
+				value = _strdup(str);
 				str = strtok(NULL, "=");
 			}
 			break;
