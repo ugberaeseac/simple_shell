@@ -69,13 +69,13 @@ int _print_number(int n)
  *
  * Return: nothing
  */
-void _print_error(char *argv, int counter, char *command)
+void _print_error(char *argv, int counter, char *cmd)
 {
 	_puts(argv);
 	_puts(": ");
 	_print_number(counter);
 	_puts(": ");
-	_puts(command);
+	_puts(cmd);
 }
 
 /**

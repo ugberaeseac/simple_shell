@@ -37,6 +37,8 @@ void (*_check_builtin(char *func))(char *str)
 	built_t built_cmds[] = {
 		{"env", _env},
 		{"exit", _exit_},
+		{"setenv", _setenv},
+		{"cd", _cd},
 		{NULL, NULL}
 	};
 
@@ -69,4 +71,70 @@ void _env(char *lineptr)
 			write(STDOUT_FILENO, &environ[i][j], 1);
 		write(STDOUT_FILENO, "\n", 1);
 	}
+}
+
+
+/**
+ * _cd - function that changes the directory to the paramater passed.
+ * @lineptr: parameter
+ *
+ * Return: void
+ */
+void _cd(char *lineptr)
+{
+	char **linecmd = NULL;
+	int num_token = 0;
+	const char *delim = "\n\t ";
+
+	linecmd = _parse_to_token(num_token, lineptr, delim);
+	if (linecmd[0] == NULL)
+	{
+		free(linecmd);
+		free(lineptr);
+		return;
+	}
+	if (linecmd[1]  == NULL)
+		cd_home();
+	else if (_strcmp(linecmd[1], ".") == 0)
+		cd_cwd();
+	else if (_strcmp(linecmd[1], "-") == 0)
+		cd_toggle();
+	else
+		cd_abspath(linecmd[1]);
+	_free_double_ptr(linecmd);
+}
+
+
+/**
+ * cd_setenv - function that sets PWD env variable
+ * to the current working directory
+ * @key: name of env-variable
+ * @value: value of env-variable
+ * @overwrite: flag 1 do change 0 do nothing
+ *
+ * Return: 0 success always
+ */
+int cd_setenv(char *key, char *value, int overwrite)
+{
+	int i = 0;
+	char *key_var;
+
+	while (environ[i] != NULL)
+	{
+		if (_strncmp(environ[i], key, _strlen(key)) == 0)
+		{
+			if (overwrite == 1)
+			{
+				key_var = update_add_env(key, value);
+				environ[i] = _strcpy(environ[i], key_var);
+			}
+			return (0);
+		}
+		i++;
+	}
+	key_var = update_add_env(key, value);
+	environ[i] = _strcpy(environ[i], key_var);
+	i++;
+	environ[i] = NULL;
+	return (0);
 }
