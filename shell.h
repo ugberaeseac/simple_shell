@@ -58,5 +58,7 @@ void _setenv(char *lineptr);
 int cd_home(void);
 int cd_cwd(void);
 int cd_toggle(void);
+int cd_abspath(char *path);
+
 
 #endif
