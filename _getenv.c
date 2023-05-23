@@ -11,6 +11,7 @@ char *_getenv(char *key)
 	char *str, *value = NULL;
 	int i = 0;
 	char *env_copy;
+
 	while (environ[i] != NULL)
 	{
 		if (_strncmp(environ[i], key, _strlen(key)) == 0)
