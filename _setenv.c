@@ -67,6 +67,6 @@ void _setenv(char *lineptr)
 
 	free(key);
 	free(value);
-	_free_doubnle_ptr(linecmd);
+	_free_double_ptr(linecmd);
 	free(lineptr);
 }
