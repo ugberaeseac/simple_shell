@@ -46,7 +46,7 @@ char **_pathtokens(char *str)
 	char **tokens;
 	const char *delim = "\n:";
 
-	str = _getenv("PATH");
+	str = getenv("PATH");
 	tokens = _parse_to_token(count, str, delim);
 	if (tokens == NULL)
 		return (NULL);
