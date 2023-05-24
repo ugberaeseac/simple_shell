@@ -10,11 +10,10 @@ int calculate_tokens(char *lineptr, const char *delim)
 	int counter = 0;
 	char *token, *line_copy;
 
-	line_copy = malloc(sizeof(char) * _strlen(lineptr));
+	line_copy = _strdup(lineptr);
 	if (line_copy == NULL)
 		return (-1);
 
-	line_copy = _strcpy(line_copy, lineptr);
 	token = strtok(line_copy, delim);
 	while (token != NULL)
 	{
