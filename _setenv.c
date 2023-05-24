@@ -41,7 +41,6 @@ void _setenv(char *lineptr)
 	{
 		_puts("Too few arguments\n");
 		_free_double_ptr(linecmd);
-		free(lineptr);
 		return;
 	}
 	key = _strdup(linecmd[1]);
@@ -55,6 +54,7 @@ void _setenv(char *lineptr)
 			environ[i] = update_add_env(key, value);
 			free(key);
 			free(value);
+			_free_double_ptr(linecmd);
 			return;
 
 		}
@@ -64,5 +64,5 @@ void _setenv(char *lineptr)
 	environ[i + 1] = NULL;
 	free(key);
 	free(value);
-	free(linecmd[0]);
+	_free_double_ptr(linecmd);
 }

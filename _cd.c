@@ -48,10 +48,9 @@ int cd_cwd(void)
 	size_t size = 0;
 
 	cwd = getcwd(buf, size);
-
 	cd_setenv("PWD", cwd, 0);
-	free(cwd);
 
+	free(cwd);
 	return (0);
 }
 
@@ -69,8 +68,10 @@ int cd_toggle(void)
 
 	cwd = getcwd(buf, size);
 	if (cwd == NULL)
+	{
+		free(cwd);
 		return (1);
-
+	}
 	oldpwd = _strdup(_getenv("OLDPWD"));
 	tmpcwd = _strdup(cwd);
 	cd_setenv("OLDPWD", tmpcwd, 1);
@@ -80,6 +81,10 @@ int cd_toggle(void)
 	if (chdir(tmpoldpwd) == -1)
 	{
 		cd_setenv("PWD", tmpcwd, 1);
+		free(tmpoldpwd);
+		free(tmpcwd);
+		free(oldpwd);
+		free(cwd);
 		return (1);
 	}
 
@@ -108,8 +113,10 @@ int cd_abspath(char *path)
 
 	cwd = getcwd(buf, size);
 	if (cwd == NULL)
+	{
+		free(cwd);
 		return (1);
-
+	}
 	cd_setenv("OLDPWD", cwd, 1);
 	if (chdir(path) == -1)
 	{
