@@ -9,7 +9,7 @@
 void _exit_d(char *lineptr)
 {
 	free(lineptr);
-	exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 }
 
 
