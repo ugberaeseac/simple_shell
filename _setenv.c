@@ -64,4 +64,5 @@ void _setenv(char *lineptr)
 	environ[i + 1] = NULL;
 	free(key);
 	free(value);
+	free(linecmd[0]);
 }

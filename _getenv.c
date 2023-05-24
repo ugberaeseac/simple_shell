@@ -24,6 +24,7 @@ char *_getenv(char *key)
 				value = _strdup(str);
 				str = strtok(NULL, "=");
 			}
+			free(env_copy);
 			break;
 		}
 		else

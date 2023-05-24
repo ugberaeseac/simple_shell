@@ -23,6 +23,8 @@ int calculate_tokens(char *lineptr, const char *delim)
 		counter++;
 		token = strtok(NULL, delim);
 	}
+
+	free(line_copy);
 	return (counter);
 }
 /**
