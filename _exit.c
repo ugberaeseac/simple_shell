@@ -58,5 +58,5 @@ void _exit_(char *lineptr)
 
 	_free_double_ptr(exit_token);
 	free(lineptr);
-	exit(status);
+	exit(statuscode);
 }
