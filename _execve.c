@@ -48,4 +48,8 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 	}
 	else
 		wait(&status);
+	if (WIFEXITED(status))
+	{
+		statuscode = WEXITSTATUS(status);
+	}
 }
