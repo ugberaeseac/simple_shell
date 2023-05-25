@@ -22,7 +22,7 @@ typedef struct built_cmd
 } built_t;
 
 extern char **environ;
-
+int statuscode;
 char *_strcpy(char *dest, char *src);
 unsigned int _strlen(char *s);
 char *_strdup(char *src);
@@ -60,5 +60,6 @@ int cd_cwd(void);
 int cd_toggle(void);
 int cd_abspath(char *path);
 ssize_t _getline(char **lineptr, ssize_t size, FILE *stream);
+void status_exec(char **argv);
 
 #endif
