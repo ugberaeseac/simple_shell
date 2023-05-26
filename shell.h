@@ -29,6 +29,7 @@ char *_strdup(char *src);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, int n);
 char *_strcat(char *dest, char *src);
+char *_strchr(char *s, char c);
 void _prompt(char *lineptr, size_t size, int counter, char **argv);
 void _exit_d(char *lineptr);
 void _execve(char **linecmd, char *lineptr, int counter, char **argv);
@@ -60,6 +61,8 @@ int cd_toggle(void);
 int cd_abspath(char *path);
 ssize_t _getline(char **lineptr, ssize_t size, FILE *stream);
 void status_exec(char **argv);
-
+void _setenv(char *lineptr);
+void _unsetenv(char *lineptr);
+int length_array(void);
 
 #endif
