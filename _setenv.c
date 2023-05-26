@@ -38,14 +38,15 @@ void _setenv(char *lineptr)
 	char *key_var;
 
 	linecmd = _parse_to_token(num_token, lineptr, delim);
-	if (linecmd[0] == NULL || linecmd[1] == NULL)
+	
+	if (linecmd[0] == NULL || linecmd[1] == NULL || linecmd[2] == NULL)
 	{
 		_puts("Too few arguments\n");
 		_free_double_ptr(linecmd);
 		return;
 	}
-	key = linecmd[1];
-	value = linecmd[2];
+	key = strdup(linecmd[1]);
+	value = strdup(linecmd[2]);
 
 	while (environ[i] != NULL)
 	{

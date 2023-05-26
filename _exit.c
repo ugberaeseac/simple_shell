@@ -22,15 +22,14 @@ int _atoi(char *str)
 	return (int_num);
 }
 
+
 /**
- * _exits - function that exits the simple shell
+ * _exit_ - function that exits the simple shell
  * @lineptr: command line input string from user
- * @counter: counter
- * @argv: argument vector
  *
  * Return: exit shell if success, -1 if error
  */
-int _exits(char *lineptr, int counter, char **argv)
+void _exit_(char *lineptr)
 {
 	int status = 0;
 	char **exit_token;
@@ -42,23 +41,19 @@ int _exits(char *lineptr, int counter, char **argv)
 	{
 		free(lineptr);
 		_free_double_ptr(exit_token);
-		return (-1);
+		return;
 	}
 
 	if (exit_token[1] != NULL)
 	{
 		status = _atoi(exit_token[1]);
-		statuscode = status;
 	}
 
-	if (status < 0)
+	if (status == -1)
 	{
-		_print_error(argv[0], counter, exit_token[0]);
-		_puts(": Illegal number: ");
-		_puts(exit_token[1]);
-		_putchar('\n');
+		perror("Error ");
 		_free_double_ptr(exit_token);
-		return (2);
+		return;
 	}
 
 	_free_double_ptr(exit_token);
