@@ -62,5 +62,5 @@ int _exits(char *lineptr, int counter, char **argv)
 
 	_free_double_ptr(exit_token);
 	free(lineptr);
-	exit(statuscode);
+	exit(status);
 }
