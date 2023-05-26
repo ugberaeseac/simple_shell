@@ -53,13 +53,16 @@ void _error_execve(char *argv, int counter, char *cmd);
 void _print_error(char *argv, int counter, char *cmd);
 char *update_add_env(char *key, char *value);
 int cd_setenv(char *key, char *value, int overwrite);
-void _cd(char *lineptr);
-void _setenv(char *lineptr);
+void _cd(char *lineptr, int counter, char **argv);
 int cd_home(void);
 int cd_cwd(void);
 int cd_toggle(void);
-int cd_abspath(char *path);
+int cd_abspath(char *path, int counter, char **argv);
 ssize_t _getline(char **lineptr, ssize_t size, FILE *stream);
 void status_exec(char **argv);
+int _chkbuilt_in(char **linecmd, char *lineptr, int counter, char **argv);
+int _exits(char *lineptr, int counter, char **argv);
+void _setenv(char *lineptr);
+void _cd_error(char *argv, int counter);
 
 #endif

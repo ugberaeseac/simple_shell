@@ -33,7 +33,7 @@ void _prompt(char *lineptr, size_t size, int counter, char **argv)
 			free(lineptr);
 			return;
 		}
-		builtin_stat = _built_in(linecmd, lineptr);
+		builtin_stat = _chkbuilt_in(linecmd, lineptr, counter, argv);
 		if (builtin_stat == -1)
 			_execve(linecmd, lineptr, counter, argv);
 		for (i = 0; linecmd[i] != NULL; i++)
