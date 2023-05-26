@@ -64,5 +64,7 @@ void status_exec(char **argv);
 void _setenv(char *lineptr);
 void _unsetenv(char *lineptr);
 int length_array(void);
+void _echo(char *lineptr);
+int _echocmd(char **linecmd);
 
 #endif
