@@ -48,7 +48,6 @@ int _exits(char *lineptr, int counter, char **argv)
 	if (exit_token[1] != NULL)
 	{
 		status = _atoi(exit_token[1]);
-		statuscode = status;
 	}
 
 	if (status < 0)

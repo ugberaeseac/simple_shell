@@ -88,7 +88,6 @@ int cd_toggle(void)
 	}
 
 	cd_setenv("PWD", tmpoldpwd, 1);
-	chdir(oldpwd);
 
 	free(tmpoldpwd);
 	free(tmpcwd);
