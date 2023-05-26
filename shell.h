@@ -57,12 +57,9 @@ void _cd(char *lineptr, int counter, char **argv);
 int cd_home(void);
 int cd_cwd(void);
 int cd_toggle(void);
-int cd_abspath(char *path, int counter, char **argv);
+int cd_abspath(char *path);
 ssize_t _getline(char **lineptr, ssize_t size, FILE *stream);
 void status_exec(char **argv);
-int _chkbuilt_in(char **linecmd, char *lineptr, int counter, char **argv);
-int _exits(char *lineptr, int counter, char **argv);
-void _setenv(char *lineptr);
-void _cd_error(char *argv, int counter);
+
 
 #endif
