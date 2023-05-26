@@ -12,11 +12,9 @@
 void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 {
 	struct stat buf;
-	int status, i;
+	int status, i, stat_check;
 	char *cmd = NULL, *cmd_path = NULL;
-	int stat_check;
 	pid_t pid = fork();
-
 
 	if (pid == 0)
 	{
@@ -49,7 +47,5 @@ void _execve(char **linecmd, char *lineptr, int counter, char **argv)
 	else
 		wait(&status);
 	if (WIFEXITED(status))
-	{
 		statuscode = WEXITSTATUS(status);
-	}
 }
