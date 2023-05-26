@@ -47,7 +47,7 @@ void _echo(char *lineptr)
 	linecmd =  _parse_to_token(num_token, lineptr, delim);
 	if (linecmd == NULL)
 	{
-		_free_double_ptr(linecmd);
+		free(lineptr);
 		return;
 	}
 	if (_strncmp(linecmd[1], "$PATH", 5) == 0)
@@ -55,7 +55,6 @@ void _echo(char *lineptr)
 		path = getenv("PATH");
 		_puts(path);
 		_putchar('\n');
-		free(path);
 	}
 	else if (_strncmp(linecmd[1], "$$", 2) == 0)
 	{
@@ -67,11 +66,10 @@ void _echo(char *lineptr)
 	{
 		_print_number(statuscode);
 		_putchar('\n');
-		
 	}
 	else
-	{
-		(_echocmd(linecmd));
-	}
-	_free_double_ptr(linecmd);
+		_echocmd(linecmd);
+
+	_free_double_ptr(linecmd);	
 }
+

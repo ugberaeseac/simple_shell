@@ -66,5 +66,11 @@ void _unsetenv(char *lineptr);
 int length_array(void);
 void _echo(char *lineptr);
 int _echocmd(char **linecmd);
+void _echoenv(char *envar);
+
+
+
+
+
 
 #endif
