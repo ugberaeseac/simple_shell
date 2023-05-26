@@ -16,7 +16,7 @@ int _chkbuilt_in(char **linecmd, char *lineptr, int counter, char **argv)
 	if (_strcmp("exit", linecmd[0]) == 0)
 		_exits(lineptr, counter, argv);
 
-	else if (_strcmp("exit", linecmd[0]) == 0)
+	else if (_strcmp("cd", linecmd[0]) == 0)
 		_cd(lineptr, counter, argv);
 
 	else
