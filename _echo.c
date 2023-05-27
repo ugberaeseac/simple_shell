@@ -32,7 +32,7 @@ int _echocmd(char **linecmd)
 
 /**
  * _echo - execute echo builtin
- * @linecmd: array of command tokens
+ * @lineptr: string entered by user in command line
  *
  * Return: void
  */
@@ -60,7 +60,7 @@ void _echo(char *lineptr)
 	{
 		_print_number(pid);
 		_putchar('\n');
-		
+
 	}
 	else if (_strncmp(linecmd[1], "$?", 2) == 0)
 	{
@@ -70,6 +70,6 @@ void _echo(char *lineptr)
 	else
 		_echocmd(linecmd);
 
-	_free_double_ptr(linecmd);	
+	_free_double_ptr(linecmd);
 }
 
