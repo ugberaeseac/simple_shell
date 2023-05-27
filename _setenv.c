@@ -38,7 +38,6 @@ void _setenv(char *lineptr)
 	char *key_var;
 
 	linecmd = _parse_to_token(num_token, lineptr, delim);
-	
 	if (linecmd[0] == NULL || linecmd[1] == NULL || linecmd[2] == NULL)
 	{
 		_puts("Too few arguments\n");

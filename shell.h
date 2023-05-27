@@ -54,7 +54,6 @@ void _error_execve(char *argv, int counter, char *cmd);
 void _print_error(char *argv, int counter, char *cmd);
 char *update_add_env(char *key, char *value);
 int cd_setenv(char *key, char *value, int overwrite);
-void _cd(char *lineptr, int counter, char **argv);
 int cd_home(void);
 int cd_cwd(void);
 int cd_toggle(void);
@@ -67,7 +66,7 @@ int length_array(void);
 void _echo(char *lineptr);
 int _echocmd(char **linecmd);
 void _echoenv(char *envar);
-
+void _cd(char *lineptr);
 
 
 
